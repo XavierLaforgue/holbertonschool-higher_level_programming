@@ -10,3 +10,12 @@ matrix = [
 print_matrix_integer(matrix)
 print("--")
 print_matrix_integer()
+
+matrix = [
+    [1, 2],
+    [4, 5]
+]
+
+print_matrix_integer(matrix)
+print("--")
+print_matrix_integer()
