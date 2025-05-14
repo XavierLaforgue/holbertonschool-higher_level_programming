@@ -3,10 +3,6 @@ def roman_syntax(roman_string, r_num_rep, r_num_sing, r_dict):
     # No roman character
     if False in [char in r_dict for char in roman_string]:
         return -1
-    # Character repeated too many times
-    for char in r_num_rep.keys():
-        if roman_string.count(char) > 3:
-            return -1
     # Repeated nonrepeatable character
     for char in r_num_sing.keys():
         if roman_string.count(char) > 1:
@@ -25,6 +21,12 @@ def roman_syntax(roman_string, r_num_rep, r_num_sing, r_dict):
             second = r_dict[roman_string[i-1]]
             third = r_dict[roman_string[i]]
             if first < third and second <= third:
+                return -1
+    # Character repeated too many times
+    from functools import reduce
+    if len(roman_string) > 3:
+        for i in range(3, len(roman_string)):
+            if reduce(lambda a, b: b if a == b else False, roman_string[:i+1]):
                 return -1
     return 0
 

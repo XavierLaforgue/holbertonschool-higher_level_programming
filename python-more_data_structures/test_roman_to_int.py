@@ -42,6 +42,7 @@ class TestRomanToIntConverter(unittest.TestCase):
         self.assertEqual(roman_to_int("XIX"), 19)
         self.assertEqual(roman_to_int("XL"), 40)
         self.assertEqual(roman_to_int("CD"), 400)
+        self.assertEqual(roman_to_int("LXXXIX"), 89)
     
     def test_badsubstractionsyntax(self):
         self.assertEqual(roman_to_int("VX"), -1)
