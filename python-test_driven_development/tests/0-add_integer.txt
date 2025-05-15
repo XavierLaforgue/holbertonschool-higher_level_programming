@@ -31,11 +31,11 @@ TypeError: a must be an integer
 Traceback (most recent call last):
 ...
 TypeError: add_integer() missing 1 required positional argument: 'a'
->>> add_integer(1, 3**10000)
-Traceback (most recent call last):
-...
-ValueError: Exceeds the limit (4300) for integer string conversion; use sys.set_int_max_str_digits() to increase the limit
 >>> add_integer(1, 3.5**567)
 Traceback (most recent call last):
 ...
 OverflowError: (34, 'Numerical result out of range')
+>>> add_integer(10, float('nan'))
+Traceback (most recent call last):
+...
+ValueError: cannot convert float NaN to integer
