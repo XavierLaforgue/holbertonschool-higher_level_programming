@@ -1,0 +1,90 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+# single-line text without special characters
+>>> text = """Hello not there"""
+>>> text_indentation(text)
+Hello not there
+
+# empty string
+>>> text_indentation("")
+<BLANKLINE>
+
+# no input
+>>> text_indentation()
+Traceback (most recent call last):
+...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+# input None
+>>> text_indentation(None)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+# input int
+>>> text_indentation(5)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+# multi-line text with no '.', '?', nor ':'
+>>> text = """Hello there this is a multiline text \
+... without any f the 'special' characters that woud generate \
+... double newline being added"""
+>>> text_indentation(text)
+Hello there this is a multiline text without any f the 'special' characters that woud generate double newline being added
+
+# text with repeated instances of '.', '?', and ':'
+>>> text = """Hello... There... Can you:: hear me ?\
+... audio is coming ... ..... broken: \
+... do you receive me ??????"""
+>>> text_indentation(text)
+Hello.
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+There.
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+Can you:
+<BLANKLINE>
+:
+<BLANKLINE>
+hear me ?
+<BLANKLINE>
+audio is coming .
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+.
+<BLANKLINE>
+broken:
+<BLANKLINE>
+do you receive me ?
+<BLANKLINE>
+?
+<BLANKLINE>
+?
+<BLANKLINE>
+?
+<BLANKLINE>
+?
+<BLANKLINE>
+?
+<BLANKLINE>
+<BLANKLINE>
