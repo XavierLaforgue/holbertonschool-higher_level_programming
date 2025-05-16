@@ -7,7 +7,6 @@ Hello not there
 
 # empty string
 >>> text_indentation("")
-<BLANKLINE>
 
 # no input
 >>> text_indentation()
@@ -86,5 +85,4 @@ do you receive me ?
 ?
 <BLANKLINE>
 ?
-<BLANKLINE>
 <BLANKLINE>

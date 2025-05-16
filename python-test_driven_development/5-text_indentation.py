@@ -32,4 +32,7 @@ def text_indentation(text):
     text = text.replace("?", "?\n\n")
     text = text.replace(":", ":\n\n")
     lines_list = text.split('\n')
-    [print(lines.strip()) for lines in lines_list]
+    for i in range(len(lines_list)):
+        lines_list[i] = lines_list[i].strip()
+    text = "\n".join(lines_list)
+    print(text, end='')
