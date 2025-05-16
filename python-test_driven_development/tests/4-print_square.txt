@@ -1,5 +1,11 @@
 >>> print_square = __import__('4-print_square').print_square
 
+# no integer
+>>> print_square("hello")
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
 # print_square with no input
 >>> print_square()
 Traceback (most recent call last):
