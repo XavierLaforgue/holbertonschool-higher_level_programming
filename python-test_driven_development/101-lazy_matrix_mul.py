@@ -28,7 +28,7 @@ def lazy_matrix_mul(m_a, m_b):
     """
     msg_list_type = "Scalar operands are not allowed, use '*' instead"
     msg_empty = "{:s} can't be empty"
-    msg_int_float = "{:s} should contain only integers or floats"
+    msg_int_float = "invalid data type for einsum"
     msg_rect = "each row of {:s} must be of the same size"
     matrices = [(m_a, "m_a"), (m_b, "m_b")]
     for mat, m_str in matrices:
@@ -43,7 +43,7 @@ def lazy_matrix_mul(m_a, m_b):
     for mat, m_str in matrices:
         if any(not isinstance(elem, (int, float)) for row in mat
                for elem in row):
-            raise TypeError(msg_int_float.format(m_str))
+            raise TypeError(msg_int_float)
     """ for mat, m_str in matrices:
         if any(map(lambda r: len(r) != len(mat[0]), [row for row in mat])):
             raise TypeError(msg_rect.format(m_str)) """
