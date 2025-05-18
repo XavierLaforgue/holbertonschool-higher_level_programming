@@ -17,52 +17,53 @@ TypeError: Scalar operands are not allowed, use '*' instead
 
 # m_b is not a list of lists:
 >>> lazy_matrix_mul([[1, 2], [3, 4]], [5, 6])
+Traceback (most recent call last):
 TypeError: Scalar operands are not allowed, use '*' instead
 
 # m_a is empty:
 >>> lazy_matrix_mul([], [[1, 2]])
 Traceback (most recent call last):
-ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 0)
+TypeError: Scalar operands are not allowed, use '*' instead
 
 # m_b is empty:
 >>> lazy_matrix_mul([[1, 2], [3, 4]], [])
 Traceback (most recent call last):
-ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 0 is different from 2)
+TypeError: Scalar operands are not allowed, use '*' instead
 
 # m_a is a list of empty lists:
 >>> lazy_matrix_mul([[], []], [[1, 2]])
 Traceback (most recent call last):
-ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 0)
+ValueError: shapes (2,0) and (1,2) not aligned: 0 (dim 1) != 1 (dim 0)
 
 # m_b is a list of empty lists:
 >>> lazy_matrix_mul([[1, 2], [3, 4]], [[]])
 Traceback (most recent call last):
-ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+ValueError: shapes (2,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0)
 
 # m_a is not a list of lists of ints and/or floats:
 >>> lazy_matrix_mul([[1], ["hello"]], [[1, 2]])
 Traceback (most recent call last):
-numpy._core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U21'), dtype('int64')) -> None
+TypeError: invalid data type for einsum
 
 # m_b is not a list of lists of ints and/or floats:
 >>> lazy_matrix_mul([[1, 2], [3, 4]], [["hello", "world"]])
 Traceback (most recent call last):
-numpy._core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U5')) -> None
+TypeError: invalid data type for einsum
 
 # m_a is not a rectangular matrix:
 >>> lazy_matrix_mul([[1], [2, 3]], [[1, 2]])
 Traceback (most recent call last):
-ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+TypeError: setting an array element with a sequence.
 
 # m_b is not a rectangular matrix:
 >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [5]])
 Traceback (most recent call last):
-ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+TypeError: setting an array element with a sequence.
 
 # imposible product of 2x1 and 2x3 matrices:
 >>> lazy_matrix_mul([[1], [2]], [[3, 4, 5], [6, 7, 8]])
 Traceback (most recent call last):
-ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 1)
+ValueError: shapes (2,1) and (2,3) not aligned: 1 (dim 1) != 2 (dim 0)
 
 # product of 2 2x2 matrices:
 >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
