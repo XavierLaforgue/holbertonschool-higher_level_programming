@@ -1,0 +1,76 @@
+>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+# m_a is not a list:
+>>> matrix_mul("hello", [1, 2])
+Traceback (most recent call last):
+TypeError: m_a must be a list
+
+# m_b is not a list:
+>>> matrix_mul([1, 2], "world")
+Traceback (most recent call last):
+TypeError: m_b must be a list
+
+# m_a is not a list of lists:
+>>> matrix_mul([1, 2], [[1, 2]])
+Traceback (most recent call last):
+TypeError: m_a must be a list of lists
+
+# m_b is not a list of lists:
+>>> matrix_mul([[1, 2], [3, 4]], [5, 6])
+Traceback (most recent call last):
+TypeError: m_b must be a list of lists
+
+# m_a is empty:
+>>> matrix_mul([], [[1, 2]])
+Traceback (most recent call last):
+TypeError: m_a must be a list of lists
+
+# m_b is empty:
+>>> matrix_mul([[1, 2], [3, 4]], [])
+Traceback (most recent call last):
+TypeError: m_b must be a list of lists
+
+# m_a is a list of empty lists:
+>>> matrix_mul([[], []], [[1, 2]])
+Traceback (most recent call last):
+ValueError: m_a can't be empty
+
+# m_b is a list of empty lists:
+>>> matrix_mul([[1, 2], [3, 4]], [[]])
+Traceback (most recent call last):
+ValueError: m_b can't be empty
+
+# m_a is not a list of lists of ints and/or floats:
+>>> matrix_mul([[1], ["hello"]], [[1, 2]])
+Traceback (most recent call last):
+TypeError: m_a should contain only integers or floats
+
+# m_b is not a list of lists of ints and/or floats:
+>>> matrix_mul([[1, 2], [3, 4]], [["hello", "world"]])
+Traceback (most recent call last):
+TypeError: m_b should contain only integers or floats
+
+# m_a is not a rectangular matrix:
+>>> matrix_mul([[1], [2, 3]], [[1, 2]])
+Traceback (most recent call last):
+TypeError: each row of m_a must be of the same size
+
+# m_b is not a rectangular matrix:
+>>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [5]])
+Traceback (most recent call last):
+TypeError: each row of m_b must be of the same size
+
+# imposible product of 2x1 and 2x3 matrices:
+>>> matrix_mul([[1], [2]], [[3, 4, 5], [6, 7, 8]])
+Traceback (most recent call last):
+ValueError: m_a and m_b can't be multiplied
+
+# product of 2 2x2 matrices:
+>>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+[[7, 10], [15, 22]]
+
+# product of 1x2 matrix and 2x2 matrix:
+>>> matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+[[13, 16]]
+
+
