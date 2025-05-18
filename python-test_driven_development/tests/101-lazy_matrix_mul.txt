@@ -3,12 +3,12 @@
 # m_a is not a list:
 >>> lazy_matrix_mul("hello", [1, 2])
 Traceback (most recent call last):
-numpy._core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U5'), dtype('int64')) -> None
+TypeError: Scalar operands are not allowed, use '*' instead
 
 # m_b is not a list:
 >>> lazy_matrix_mul([1, 2], "world")
 Traceback (most recent call last):
-numpy._core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U5')) -> None
+TypeError: Scalar operands are not allowed, use '*' instead
 
 # m_a is not a list of lists:
 >>> lazy_matrix_mul([1, 2], [[1, 2]])
