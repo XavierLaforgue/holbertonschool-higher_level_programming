@@ -48,6 +48,6 @@ def lazy_matrix_mul(m_a, m_b):
         if any(map(lambda r: len(r) != len(mat[0]), [row for row in mat])):
             raise TypeError(msg_rect.format(m_str)) """
     if not m_a[0] or not m_b[0] or (len(m_a[0]) != len(m_b)):
-        raise ValueError(f"shapes ({len(m_a)},{len(m_a[0])}) and ({len(m_b)},{len(m_b)}) not aligned: {len(m_a[0])} (dim 1) != {len(m_b)} (dim 0)")
+        raise ValueError(f"shapes ({len(m_a)},{len(m_a[0])}) and ({len(m_b)},{len(m_b[0])}) not aligned: {len(m_a[0])} (dim 1) != {len(m_b)} (dim 0)")
 
     return np.matmul(np.array(m_a), np.array(m_b))
