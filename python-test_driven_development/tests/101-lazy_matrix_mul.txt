@@ -1,0 +1,74 @@
+>>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+# m_a is not a list:
+>>> lazy_matrix_mul("hello", [1, 2])
+Traceback (most recent call last):
+numpy._core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U5'), dtype('int64')) -> None
+
+# m_b is not a list:
+>>> lazy_matrix_mul([1, 2], "world")
+Traceback (most recent call last):
+numpy._core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U5')) -> None
+
+# m_a is not a list of lists:
+>>> lazy_matrix_mul([1, 2], [[1, 2]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+
+# m_b is not a list of lists:
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [5, 6])
+array([17, 39])
+
+# m_a is empty:
+>>> lazy_matrix_mul([], [[1, 2]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 0)
+
+# m_b is empty:
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 0 is different from 2)
+
+# m_a is a list of empty lists:
+>>> lazy_matrix_mul([[], []], [[1, 2]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 0)
+
+# m_b is a list of empty lists:
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+
+# m_a is not a list of lists of ints and/or floats:
+>>> lazy_matrix_mul([[1], ["hello"]], [[1, 2]])
+Traceback (most recent call last):
+numpy._core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U21'), dtype('int64')) -> None
+
+# m_b is not a list of lists of ints and/or floats:
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [["hello", "world"]])
+Traceback (most recent call last):
+numpy._core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U5')) -> None
+
+# m_a is not a rectangular matrix:
+>>> lazy_matrix_mul([[1], [2, 3]], [[1, 2]])
+Traceback (most recent call last):
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+
+# m_b is not a rectangular matrix:
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [5]])
+Traceback (most recent call last):
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+
+# imposible product of 2x1 and 2x3 matrices:
+>>> lazy_matrix_mul([[1], [2]], [[3, 4, 5], [6, 7, 8]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 1)
+
+# product of 2 2x2 matrices:
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+array([[ 7, 10],
+       [15, 22]])
+
+# product of 1x2 matrix and 2x2 matrix:
+>>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+array([[13, 16]])
