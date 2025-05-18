@@ -27,7 +27,6 @@ def lazy_matrix_mul(m_a, m_b):
         Left to NumPy.
     """
     msg_list_type = "Scalar operands are not allowed, use '*' instead"
-    msg_list_of_lists_type = msg_list_type + " of lists"
     msg_empty = "{:s} can't be empty"
     msg_int_float = "{:s} should contain only integers or floats"
     msg_rect = "each row of {:s} must be of the same size"
@@ -35,5 +34,20 @@ def lazy_matrix_mul(m_a, m_b):
     for mat, m_str in matrices:
         if not isinstance(mat, list):
             raise TypeError(msg_list_type.format(m_str))
+    for mat, m_str in matrices:
+        if not mat or any(not isinstance(row, list) for row in mat):
+            raise TypeError(msg_list_type)
+    for mat, m_str in matrices:
+        if not mat[0]:
+            raise ValueError(msg_empty.format(m_str))
+    for mat, m_str in matrices:
+        if any(not isinstance(elem, (int, float)) for row in mat
+               for elem in row):
+            raise TypeError(msg_int_float.format(m_str))
+    for mat, m_str in matrices:
+        if any(map(lambda r: len(r) != len(mat[0]), [row for row in mat])):
+            raise TypeError(msg_rect.format(m_str))
+    if len(m_a[0]) != len(m_b):
+        raise ValueError(f"shapes ({len(m_a)},{len(m_a[0])}) and ({len(m_b)},{len(m_b)}) not aligned: {len(m_a[0])} (dim 1) != {len(m_b)} (dim 0)")
 
     return np.matmul(np.array(m_a), np.array(m_b))
