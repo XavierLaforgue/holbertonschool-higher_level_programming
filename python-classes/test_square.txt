@@ -1,0 +1,37 @@
+>>> Square = __import__('6-square').Square
+
+# no input
+>>> my_square = Square()
+>>> print("Square of size {} and area {} at position {}".format(
+...		my_square.size, my_square.area(), my_square.position))
+Square of size 0 and area 0 at position (0, 0)
+>>> my_square.my_print()
+<BLANKLINE>
+
+# input size 0
+>>> my_square = Square(0)
+>>> print("Square of size {} and area {} at position {}".format(
+...		my_square.size, my_square.area(), my_square.position))
+Square of size 0 and area 0 at position (0, 0)
+>>> my_square.my_print()
+<BLANKLINE>
+
+# integer input
+>>> my_square = Square(3)
+>>> print("Square of size {} and area {} at position {}".format(
+...		my_square.size, my_square.area(), my_square.position))
+Square of size 3 and area 9 at position (0, 0)
+>>> my_square.my_print()
+###
+###
+###
+
+>>> my_square = Square(-3)
+Traceback (most recent call last):
+ValueError: size must be >= 0
+>>> my_square = Square("hello")
+Traceback (most recent call last):
+TypeError: size must be an integer
+>>> my_square = Square("hello", [0, 1, 2])
+Traceback (most recent call last):
+TypeError: size must be an integer

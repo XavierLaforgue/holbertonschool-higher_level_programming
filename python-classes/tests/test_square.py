@@ -4,7 +4,7 @@ import unittest
 Square = __import__('6-square').Square
 
 class TestSquareTaskSix(unittest.TestCase):
-    def test_SizeIsNeg(self):
+    def test_SizeIsPos(self):
         with self.assertRaises(ValueError):
             Square(-3)
     def test_SizeIsNotInt(self):
