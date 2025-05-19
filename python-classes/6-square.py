@@ -90,7 +90,7 @@ class Square(object):
         return self.__position
 
     @position.setter
-    def position(self, value) -> None:
+    def position(self, position) -> None:
         """
         Property setter for position. Sets the value of Square's
         position.
@@ -98,12 +98,13 @@ class Square(object):
         Raises:
             TypeError: if not a tuple of 2 positive integers.
         """
-        if (not isinstance(value, tuple) or
-                not all(isinstance(elem, int) for elem in value) or
-                any(map(lambda x: x < 0, value))):
+        if (not isinstance(position, tuple) or
+                len(position) != 2 or
+                not all(isinstance(elem, int) for elem in position) or
+                any(map(lambda x: x < 0, position))):
             raise TypeError('position must be a tuple of 2 positive '
                             'integers')
-        self.__position = value
+        self.__position = position
 
     def area(self) -> int:
         """
