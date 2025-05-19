@@ -51,8 +51,8 @@ class Square(object):
             size - a positive integer.
             position - a tuple of 2 positive integers.
         """
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self) -> int:
@@ -90,7 +90,7 @@ class Square(object):
         return self.__position
 
     @position.setter
-    def position(self, position) -> None:
+    def position(self, value) -> None:
         """
         Property setter for position. Sets the value of Square's
         position.
@@ -98,12 +98,12 @@ class Square(object):
         Raises:
             TypeError: if not a tuple of 2 positive integers.
         """
-        if (not isinstance(position, tuple) or
-                not all(isinstance(value, int) for value in position) or
-                any(map(lambda x: x < 0, position))):
-            raise TypeError('position must be a tuple of 2 positive'
+        if (not isinstance(value, tuple) or
+                not all(isinstance(elem, int) for elem in value) or
+                any(map(lambda x: x < 0, value))):
+            raise TypeError('position must be a tuple of 2 positive '
                             'integers')
-        self.__position = position
+        self.__position = value
 
     def area(self) -> int:
         """
