@@ -35,3 +35,11 @@ TypeError: size must be an integer
 >>> my_square = Square("hello", [0, 1, 2])
 Traceback (most recent call last):
 TypeError: size must be an integer
+
+# square of size 0 but not at the origin
+>>> my_square = Square(0, (2, 4))
+>>> print("Square of size {} and area {} at position {}".format(
+...		my_square.size, my_square.area(), my_square.position))
+Square of size 0 and area 0 at position (2, 4)
+>>> my_square.my_print()
+<BLANKLINE>

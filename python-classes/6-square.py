@@ -51,18 +51,8 @@ class Square(object):
             size - a positive integer.
             position - a tuple of 2 positive integers.
         """
-        if not isinstance(size, int):
-            raise TypeError('size must be an integer')
-        if size < 0:
-            raise ValueError('size must be >= 0')
-        self.__size = size
-        if (not isinstance(position, tuple) or
-                len(position) != 2 or
-                not all(isinstance(elem, int) for elem in position) or
-                any(map(lambda x: x < 0, position))):
-            raise TypeError('position must be a tuple of 2 positive '
-                            'integers')  
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self) -> int:
@@ -129,9 +119,10 @@ class Square(object):
         """
         Prints the square to stdout using #
         """
-        print("\n"*self.__position[1], end="")
-        for i in range(self.__size):
-            print(" "*self.__position[0], end="")
-            print("#"*self.__size)
         if not self.__size:
             print()
+            return
+        print("\n"*self.__position[1], end="")
+        for _ in range(self.__size):
+            print(" "*self.__position[0], end="")
+            print("#"*self.__size)
