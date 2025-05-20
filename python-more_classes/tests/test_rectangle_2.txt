@@ -1,0 +1,36 @@
+>>> Rectangle = __import__('1-rectangle').Rectangle
+
+# width not int:
+>>> rec = Rectangle("2", 3)
+Traceback (most recent call last):
+TypeError: width must be an integer
+
+# width negative integer:
+>>> rec = Rectangle(-2, 3)
+Traceback (most recent call last):
+ValueError: width must be >= 0
+
+# height not int:
+>>> rec = Rectangle(2, "3")
+Traceback (most recent call last):
+TypeError: height must be an integer
+
+# height negative integer:
+>>> rec = Rectangle(2, -3)
+Traceback (most recent call last):
+ValueError: height must be >= 0
+
+# Rectangle with no arguments:
+>>> rec = Rectangle()
+>>> rec.width
+0
+>>> rec.height
+0
+
+# setter is called when property assignment is attempted:
+>>> rec.width = -2
+Traceback (most recent call last):
+ValueError: width must be >= 0
+>>> rec.height = -3
+Traceback (most recent call last):
+ValueError: height must be >= 0
