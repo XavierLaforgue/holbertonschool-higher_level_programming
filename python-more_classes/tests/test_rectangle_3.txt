@@ -1,0 +1,60 @@
+>>> Rectangle = __import__('3-rectangle').Rectangle
+
+# width not int:
+>>> rec = Rectangle("2", 3)
+Traceback (most recent call last):
+TypeError: width must be an integer
+
+# width negative integer:
+>>> rec = Rectangle(-2, 3)
+Traceback (most recent call last):
+ValueError: width must be >= 0
+
+# height not int:
+>>> rec = Rectangle(2, "3")
+Traceback (most recent call last):
+TypeError: height must be an integer
+
+# height negative integer:
+>>> rec = Rectangle(2, -3)
+Traceback (most recent call last):
+ValueError: height must be >= 0
+
+# Rectangle with no arguments:
+>>> rec = Rectangle()
+>>> rec.width
+0
+>>> rec.height
+0
+
+# setter is called when property assignment is attempted:
+>>> rec.width = -2
+Traceback (most recent call last):
+ValueError: width must be >= 0
+>>> rec.height = -3
+Traceback (most recent call last):
+ValueError: height must be >= 0
+
+# area method is available:
+>>> rec.width = 3
+>>> rec.height = 4
+>>> rec.area()
+12
+
+# perimeter is available:
+>>> rec.perimeter()
+14
+
+# print and str display a rectangle made of #'s:
+>>> str(rec)
+'###\n###\n###\n###'
+>>> print(str(rec))
+###
+###
+###
+###
+
+# when width or height are 0, str and print display nothing:
+>>> rec.width = 0
+>>> print(str(rec))
+<BLANKLINE>
