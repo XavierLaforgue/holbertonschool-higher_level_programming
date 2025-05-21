@@ -19,7 +19,7 @@ Classes:
         may create a copy of the current Rectangle instance.
         A message is printed on instance deletion.
         The number of object instances currently in existence is
-        accessible via the class. 
+        accessible via the class.
 """
 
 
@@ -43,6 +43,7 @@ class Rectangle(object):
     """
 
     number_of_instances = 0
+
     def __init__(self, width: int = 0, height: int = 0):
         """
         Initialize Rectangle object.
@@ -240,7 +241,8 @@ if __name__ == "__main__":
 
     def run_doctests(file_path, test_file_path):
         """Run doctest from current module file and from test file."""
-        print(f"🔍 Running doctests on {test_file_path}🔍")
+        print(f"🔍 Running doctests on {file_path} and "
+              f"{test_file_path}🔍")
 
         # Suppress __del__ printing
         Rectangle.suppress_del_print = True
@@ -290,8 +292,8 @@ if __name__ == "__main__":
         else:
             print(f"❌ pydocstyle found {error_count} issues.❌")
 
-    file_path = "5-rectangle.py"
-    test_file_path = "tests/test_rectangle_5.txt"
+    file_path = "6-rectangle.py"
+    test_file_path = "tests/test_rectangle_6.txt"
     run_doctests(file_path, test_file_path)
     run_pycodestyle(file_path)
     run_pydocstyle(file_path)
