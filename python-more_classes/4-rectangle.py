@@ -131,5 +131,55 @@ class Rectangle(object):
 
 if __name__ == "__main__":
     import doctest
-    doctest.testmod(verbose=False)
-    doctest.testfile("tests/test_rectangle_4.txt", verbose=False)
+    import pycodestyle
+
+    def run_doctests(file_path):
+        """Run doctest from current module file and from test file."""
+        print(f"🔍 Running doctests on {file_path}...")
+
+        # Run module-level doctests
+        mod_result = doctest.testmod(verbose=False)
+
+        # Run doctests from external file
+        file_result = doctest.testfile(file_path, verbose=False)
+
+        total_failed = mod_result.failed + file_result.failed
+        total_tests = mod_result.attempted + file_result.attempted
+
+        if total_failed == 0:
+            print(f"✅ All {total_tests} doctests passed.")
+        else:
+            print(f"❌ {total_failed} of {total_tests} doctests "
+                  "failed.")
+
+    def run_pycodestyle(file_path):
+        """Run pycodestyle on the given filename."""
+        print(f"🔍 Running pycodestyle on {file_path}...")
+        style = pycodestyle.StyleGuide()
+        result = style.check_files([file_path])
+        if result.total_errors == 0:
+            print("✅ pycodestyle passed.")
+        else:
+            print(f"❌ pycodestyle found {result.total_errors} "
+                  "issues.")
+
+    from pydocstyle import check
+
+    def run_pydocstyle(file_path):
+        """Run pydocstyle on the given filename."""
+        print(f"🔍 Running pydocstyle on {file_path}...")
+        report = check([file_path])
+        error_count = 0
+        for error in report:
+            print(f"{error}")
+            error_count += 1
+        if error_count == 0:
+            print("✅ pydocstyle passed.")
+        else:
+            print(f"❌ pydocstyle found {error_count} issues.")
+
+    file = "4-rectangle.py"
+    test_file_path = "tests/test_rectangle_4.txt"
+    run_doctests(test_file_path)
+    run_pycodestyle(file)
+    run_pydocstyle(file)
