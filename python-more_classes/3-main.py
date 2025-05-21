@@ -14,5 +14,8 @@ my_rectangle.height = 3
 print(my_rectangle)
 print(repr(my_rectangle))
 
-my_rectangle.width = 0
+print("---")
+my_rectangle.width = 5
+my_rectangle.height = 1
+print(str(my_rectangle))
 print(my_rectangle)
