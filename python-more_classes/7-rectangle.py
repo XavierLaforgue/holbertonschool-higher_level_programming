@@ -177,7 +177,7 @@ class Rectangle(object):
         """
         if not self.width or not self.height:
             return ""
-        return "\n".join([str(type(self).print_symbol) * self.width] *
+        return "\n".join([str(self.print_symbol) * self.width] *
                          self.height)
 
     def __repr__(self) -> str:
