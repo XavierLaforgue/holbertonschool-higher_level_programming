@@ -4,35 +4,7 @@ Module Name: 8-rectangle.
 
 Contains BaseGeometry class and a Rectangle class that inherits it.
 """
-
-
-class BaseGeometry:
-    """Define a class with integer validator and area.
-
-    Examples:
-    >>> bg = BaseGeometry()
-    >>> print(bg.area())
-    Traceback (most recent call last):
-    Exception: area() is not implemented
-    >>> bg.integer_validator("height (cm)", 1.78)
-    Traceback (most recent call last):
-    TypeError: height (cm) must be an integer
-    >>> bg.integer_validator("weight (kg)", 82)
-    >>> bg.integer_validator("IQ", -69)
-    Traceback (most recent call last):
-    ValueError: IQ must be greater than 0
-    """
-
-    def area(self):
-        """Define a non-implemented method that claculares an area."""
-        raise Exception('area() is not implemented')
-
-    def integer_validator(self, name, value):
-        """Validate input for integer field/attribute."""
-        if type(value).__name__ != int.__name__:
-            raise TypeError(f"{name} must be an integer")
-        if value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
