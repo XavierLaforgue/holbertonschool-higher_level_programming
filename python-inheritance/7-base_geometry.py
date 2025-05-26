@@ -156,7 +156,7 @@ if __name__ == "__main__":
             print(f"❌ pydocstyle found {error_count} issues.❌")
     file_name = basename(__file__)
     check_mod_name_docstring(file_name)
-    test_file_path = ""
+    test_file_path = "tests/7-base_geometry.txt"
     run_doctests(file_name, test_file_path)
     run_pycodestyle(file_name)
     run_pydocstyle(file_name)
