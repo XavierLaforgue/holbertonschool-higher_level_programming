@@ -40,27 +40,7 @@ class Rectangle(BaseGeometry):
 
     def __init__(self, width, height):
         """Initialize Recatngle with width and height."""
-        self.width = width
-        self.height = height
-
-    @property
-    def width(self):
-        """Get width."""
-        return self.__width
-
-    @width.setter
-    def width(self, width):
-        """Set width using integer_validator from BaseGeometry."""
         self.__width = self.integer_validator("width", width)
-
-    @property
-    def height(self):
-        """Get height."""
-        return self.__height
-
-    @height.setter
-    def height(self, height):
-        """Set height using integer validator from BaseGeometry."""
         self.__height = self.integer_validator("height", height)
 
 
