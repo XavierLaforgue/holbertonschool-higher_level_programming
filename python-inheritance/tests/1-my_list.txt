@@ -15,3 +15,10 @@
 [-2, 3, 23]
 >>> my_list.print_sorted()
 [-2, 3, 23]
+
+# Check MyList inherited list __str__ method:
+>>> print(my_list)
+[3, -2, 23]
+>>> my_list2 = my_list.print_sorted()
+>>> print(my_list2)
+[-2, 3, 23]

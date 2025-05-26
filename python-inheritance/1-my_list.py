@@ -14,7 +14,7 @@ class MyList(list):
         """Print list copy in ascending order."""
         my_list = self.copy()
         my_list.sort()
-        print(my_list)
+        return my_list
 
 
 if __name__ == "__main__":
