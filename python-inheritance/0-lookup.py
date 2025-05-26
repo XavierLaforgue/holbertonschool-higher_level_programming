@@ -11,6 +11,7 @@ def lookup(obj):
     """Return list of available attributes of a class."""
     return dir(obj)
 
+
 if __name__ == "__main__":
     """
     Runs doctests, pycodestyle, and pydocstyle checks on the module.
