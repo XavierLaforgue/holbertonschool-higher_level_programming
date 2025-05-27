@@ -24,12 +24,13 @@ class CountedIterator:
     Traceback (most recent call last):
     StopIteration
     >>> counted_iter.get_count()
-    5
+    4
+
     """
 
-    def __init__(self, object):
+    def __init__(self, an_object):
         """Initialize instance of CountedIteration."""
-        self.__iterator = iter(object)
+        self.__iterator = iter(an_object)
         self.__counter = 0
 
     def get_count(self):
@@ -37,13 +38,14 @@ class CountedIterator:
         return self.__counter
 
     def __iter__(self):
-        """Return the iterator object."""
-        return self.__iterator
+        """Return self as the iterator object."""
+        return self
 
     def __next__(self):
         """Return the next item and increment the counter."""
+        value = next(self.__iterator)
         self.__counter += 1
-        return next(self.__iterator)
+        return value
 
 
 if __name__ == "__main__":
