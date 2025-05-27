@@ -1,141 +1,51 @@
 #!/usr/bin/python3
 """
-Module Name: 102-square.
+Module Name: 100-my_int.
 
-Defines the Square class, which represents a square with a given size.
+Contains a class that inherits from int and inverts the equal and
+different oprators.
 """
 
 
-class Square:
-    """
-    Represents a square with a size.
+class MyInt(int):
+    """Define a class of ints with inverted operators equal and not."""
 
-    Attributes:
-        size (int): The size of the square (length of a side).
-    """
-
-    def __init__(self, size=0):
-        """
-        Initialize a Square instance.
-
-        Args:
-            size (int, optional): The size of the square as a
-                non-negative integer. Defaults to 0.
-
-        Raises:
-            TypeError: If size is not an integer.
-            ValueError: If size is negative.
-        """
-        self.__size = size
-
-    def area(self):
-        """
-        Calculate the area of the square.
-
-        Returns:
-            int: The area of the square.
-        """
-        return self.__size**2
-
-    @property
-    def size(self):
-        """
-        Get the size of the square.
-
-        Returns:
-            int: The size of the square.
-        """
-        return self.__size
-
-    @size.setter
-    def size(self, value):
-        """
-        Set the size of the square.
-
-        Args:
-            value (int): The new size value.
-
-        Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is negative.
-        """
-        if not isinstance(value, int):
-            raise TypeError('size must be an integer')
-        if value < 0:
-            raise ValueError('size must be >= 0')
-        self.__size = value
+    def __init__(self, value: int):
+        """Initialize instance of MyInt."""
+        self.__value = value
 
     def __eq__(self, other) -> bool:
-        """
-        Check if two squares have equal area.
+        """Define custom equality comparison.
 
-        Args:
-            other (Square): The other square to compare.
-
-        Returns:
-            bool: True if areas are equal, False otherwise.
+        Examples:
+        >>> my_i = MyInt(1)
+        >>> my_i == 1
+        False
+        >>> my_i != 1
+        True
+        >>> my_other_i = MyInt(5)
+        >>> my_other_i == my_i
+        True
+        >>> my_other_i != my_i
+        False
+        >>> my_i != my_other_i
+        False
+        >>> my_i == my_other_i
+        True
         """
-        return self.area() == other.area()
+        if isinstance(other, MyInt):
+            neq_value = self.__value != other.__value
+        else:
+            neq_value = self.__value != other
+        return neq_value
 
     def __ne__(self, other) -> bool:
-        """
-        Check if two squares have different areas.
-
-        Args:
-            other (Square): The other square to compare.
-
-        Returns:
-            bool: True if areas are not equal, False otherwise.
-        """
-        return self.area() != other.area()
-
-    def __gt__(self, other) -> bool:
-        """
-        Check if this square's area is greater than another's.
-
-        Args:
-            other (Square): The other square to compare.
-
-        Returns:
-            bool: True if this area is greater, False otherwise.
-        """
-        return self.area() > other.area()
-
-    def __ge__(self, other) -> bool:
-        """
-        Check if this square's area is greater than or equal to another's.
-
-        Args:
-            other (Square): The other square to compare.
-
-        Returns:
-            bool: True if this area is greater or equal, False otherwise.
-        """
-        return self.area() >= other.area()
-
-    def __lt__(self, other) -> bool:
-        """
-        Check if this square's area is less than another's.
-
-        Args:
-            other (Square): The other square to compare.
-
-        Returns:
-            bool: True if this area is less, False otherwise.
-        """
-        return self.area() < other.area()
-
-    def __le__(self, other) -> bool:
-        """
-        Check if this square's area is less than or equal to another's.
-
-        Args:
-            other (Square): The other square to compare.
-
-        Returns:
-            bool: True if this area is less or equal, False otherwise.
-        """
-        return self.area() <= other.area()
+        """Define custom difference comparison."""
+        if isinstance(other, MyInt):
+            eq_value = self.__value == other.__value
+        else:
+            eq_value = self.__value == other
+        return eq_value
 
 
 if __name__ == "__main__":
