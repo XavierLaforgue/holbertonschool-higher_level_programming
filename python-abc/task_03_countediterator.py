@@ -29,21 +29,21 @@ class CountedIterator:
 
     def __init__(self, object):
         """Initialize instance of CountedIteration."""
-        self.iterator = iter(object)
-        self.counter = 0
+        self.__iterator = iter(object)
+        self.__counter = 0
 
     def get_count(self):
         """Return current value of counter."""
-        return self.counter
+        return self.__counter
 
     def __iter__(self):
         """Return the iterator object."""
-        return self.iterator
+        return self.__iterator
 
     def __next__(self):
         """Return the next item and increment the counter."""
-        self.counter += 1
-        return next(self.iterator)
+        self.__counter += 1
+        return next(self.__iterator)
 
 
 if __name__ == "__main__":
