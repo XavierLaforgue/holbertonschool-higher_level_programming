@@ -37,13 +37,16 @@ class Student(object):
             return my_dict
         return self.__dict__
 
-    def reload_from_json(self, json):
+    def reload_from_json(self, json={"age": 1, "first_name": "J", "last_name": "S"}):
         """Recover dictionary representation of a Student instance.
 
         Args:
             json (dict): dictionary with the attributes with which to
             reload the Student instance.
         """
+        json.setdefault("age", 1)
+        json.setdefault("first_name", "J")
+        json.setdefault("last_name", "S")
         self.last_name = json.get("last_name")
         self.first_name = json.get("first_name")
         self.age = json.get("age")
