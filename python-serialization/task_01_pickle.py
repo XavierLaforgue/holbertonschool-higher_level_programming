@@ -28,8 +28,11 @@ class CustomObject(object):
         
     def serialize(self, filename: str):
         """Serialize class into file using picle."""
-        with open(filename, "wb") as f:
-            pickle.dump(self, f)
+        try:
+            with open(filename, "wb") as f:
+                pickle.dump(self, f)
+        except Exception:
+            pass
 
     @classmethod
     def deserialize(cls, filename: str) -> "CustomObject | None":
