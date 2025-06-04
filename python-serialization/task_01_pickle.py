@@ -36,9 +36,11 @@ class CustomObject(object):
 
     @classmethod
     def deserialize(cls, filename: str) -> "CustomObject | None":
-        if os.path.exists(filename):
-            with open(filename, "rb") as f:
-                loaded = pickle.load(f)
-            if isinstance(loaded, CustomObject):
-                return loaded
-        return None
+        try:
+            if os.path.exists(filename):
+                with open(filename, "rb") as f:
+                    loaded = pickle.load(f)
+                if isinstance(loaded, CustomObject):
+                    return loaded
+        except Exception:
+            return None
