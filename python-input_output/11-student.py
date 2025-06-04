@@ -44,6 +44,6 @@ class Student(object):
             json (dict): dictionary with the attributes with which to
             reload the Student instance.
         """
-        self.last_name = json["last_name"]
-        self.first_name = json["first_name"]
-        self.age = json["age"]
+        self.last_name = json.get("last_name")
+        self.first_name = json.get("first_name")
+        self.age = json.get("age")
