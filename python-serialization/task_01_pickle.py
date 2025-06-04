@@ -20,9 +20,11 @@ class CustomObject(object):
 
     def display(self):
         """Display the attributes of the custom object."""
-        if self is not None:
+        try:
             print(f"Name: {self.name}\nAge: {self.age}\n"
                   f"Is Student: {self.is_student}")
+        except Exception:
+            pass
         
     def serialize(self, filename: str):
         """Serialize class into file using picle."""
