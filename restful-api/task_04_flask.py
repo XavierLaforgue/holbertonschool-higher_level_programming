@@ -1,0 +1,56 @@
+#!/usr/bin/python3
+"""
+Module Name: task_04_flask.
+
+Contains a flask server.
+"""
+from flask import Flask
+from flask import jsonify
+from markupsafe import escape
+from flask import request
+
+app = Flask(__name__)
+users = {}
+@app.route("/")
+def home():
+    return "Welcome to the Flask API!"
+@app.route("/data")
+def list_usernames():
+    return jsonify(list(users.keys()))
+@app.route("/users")
+def list_users():
+    return jsonify(list(users.keys()))
+@app.route("/status")
+def status():
+    return "OK"
+@app.route("/users/<username>")
+def user_data(username):
+    if escape(username) not in users:
+        return jsonify({"error": "User not found"}), 400
+    return jsonify(users[escape(username)])
+@app.route("/add_user", methods=["POST"])
+def add_user():
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form
+    data = request.form
+    if "username" not in data:
+        return jsonify({"error": "Username is required"}), 400
+    username = request.form["username"]
+    name = data.get("name", "NoName")
+    age = data.get("age", 0)
+    city = data.get("city", "NoCity")
+    if username not in users.keys():
+        users[username] = {"username": username,
+                           "name": name,
+                           "age": age,
+                           "city": city}
+        return jsonify({"message": "User added",
+                        username: users[username]}), 201
+    return "username already exists", 409
+
+    
+
+if __name__ == "__main__":
+    app.run()
