@@ -50,8 +50,7 @@ class my_handler(http.server.BaseHTTPRequestHandler):
             self.send_response(404, message="Endpoint not found")
             self.send_header("Content-Type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"404 Not Found: The requested endpoint"
-                             b" is undefined")
+            self.wfile.write(b"Endpoint not found")
 
 
     def do_POST(self):
