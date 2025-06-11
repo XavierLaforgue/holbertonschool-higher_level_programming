@@ -37,9 +37,19 @@ def add_user():
     if "username" not in data:
         return jsonify({"error": "Username is required"}), 400
     username = data["username"]
-    name = data.get("name", "NoName")
-    age = data.get("age", 0)
-    city = data.get("city", "NoCity")
+    if "name" not in data:
+        return jsonify({"error": "Name is required"}), 400
+    name = data["name"]
+    if "age" not in data:
+        return jsonify({"error": "Age is required"}), 400
+    age = data["age"]
+    if "city" not in data:
+        return jsonify({"error": "City is required"}), 400
+    city = data["city"]
+    # name = data.get("name", "NoName")
+    # age = data.get("age", 0)
+    # city = data.get("city", "NoCity")
+
     if username not in users.keys():
         users[username] = {"username": username,
                            "name": name,
@@ -47,7 +57,7 @@ def add_user():
                            "city": city}
         return jsonify({"message": "User added",
                         username: users[username]}), 201
-    return "username already exists", 409
+    return jsonify({"error": "Username already exists"}), 409
 
     
 
