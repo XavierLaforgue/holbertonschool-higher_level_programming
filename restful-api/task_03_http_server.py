@@ -17,7 +17,7 @@ class my_handler(http.server.BaseHTTPRequestHandler):
                                message="Message for GET request OK")
             self.send_header("Content-Type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"Hello, this is a simple API!\n")
+            self.wfile.write(b"Hello, this is a simple API!")
         elif self.path == "/data":
             dataset = {
                 "name": "John",
@@ -29,12 +29,12 @@ class my_handler(http.server.BaseHTTPRequestHandler):
                 message="Message fo GET /data request OK")
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            self.wfile.write(dataset_json +b"\n")
+            self.wfile.write(dataset_json)
         elif self.path == "/status":
             self.send_response(200, message="OK for GET /status")
             self.send_header("Content-Type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"OK\n")
+            self.wfile.write(b"OK")
         elif self.path == "/info":
             info_dict={
                 "version": "1.0",
@@ -47,11 +47,11 @@ class my_handler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(info_json.encode("utf-8") + b"\n")
         else:
-            self.send_response(404, message="Personalized Not Found")
+            self.send_response(404, message="Endpoint not found")
             self.send_header("Content-Type", "text/plain")
             self.end_headers()
             self.wfile.write(b"404 Not Found: The requested endpoint"
-                             b" is undefined\n")
+                             b" is undefined")
 
 
     def do_POST(self):
