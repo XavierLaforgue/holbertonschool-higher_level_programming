@@ -27,7 +27,7 @@ def status():
 def user_data(username):
     if escape(username) not in users:
         return jsonify({"error": "User not found"}), 400
-    return jsonify(users[escape(username)])
+    return jsonify(users[escape(username)]), 200
 @app.route("/add_user", methods=["POST"])
 def add_user():
     if request.is_json:
@@ -62,4 +62,4 @@ def add_user():
     
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
