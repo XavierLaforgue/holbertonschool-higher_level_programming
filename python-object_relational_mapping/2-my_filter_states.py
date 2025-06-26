@@ -23,9 +23,10 @@ def my_filter_states():
         host='localhost',
         port=3306)
     c = db.cursor()
-    c.execute("""SELECT * FROM states
-            WHERE states.name=%s
-            ORDER BY states.id ASC""", (state_name,))
+    query = "SELECT * FROM states "\
+            "WHERE name='{}' "\
+            "ORDER BY states.id ASC".format(state_name)
+    c.execute(query)
     for row in c.fetchall():
         print(row)
 
