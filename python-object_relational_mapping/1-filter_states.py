@@ -4,10 +4,11 @@ Module name: 1-filter_states.
 
 Contains something.
 """
-from sys import argv
-import MySQLdb
+if __name__ == "__main__":
+    from sys import argv
+    import MySQLdb
 
-def filter_states(argv):
+    # def filter_states():
     mysql_username = argv[1]
     mysql_password = argv[2]
     db_name = argv[3]
@@ -20,13 +21,12 @@ def filter_states(argv):
         port=3306)
     c = db.cursor()
     c.execute("""SELECT * FROM states
-              WHERE name LIKE %s
-              ORDER BY states.id ASC""", ("N%",))
+            WHERE states.name LIKE %s
+            ORDER BY states.id ASC""", ("N%",))
     for row in c.fetchall():
         print(row)
 
     c.close()
     db.close()
 
-if __name__ == "__main__":
-    filter_states(argv)
+    # filter_states()
