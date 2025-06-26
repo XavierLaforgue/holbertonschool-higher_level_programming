@@ -16,7 +16,7 @@ class State(Base):
     id = Column(
         "id",
         Integer,
-        autoincrement=True,
+        autoincrement="auto",
         nullable=False,
         unique=True,
         primary_key=True
