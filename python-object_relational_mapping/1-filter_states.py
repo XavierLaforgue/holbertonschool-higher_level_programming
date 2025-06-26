@@ -1,8 +1,10 @@
-#!/usr/bin/python3
+#!./orm-venv/bin/python3
+# #!/usr/bin/python3
 """
 Module name: 1-filter_states.
 
-Contains something.
+Contains something a script that lists the states whose names start
+with the capital letter 'N'.
 """
 if __name__ == "__main__":
     from sys import argv
