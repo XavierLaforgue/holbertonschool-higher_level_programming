@@ -12,11 +12,9 @@ if __name__ == "__main__":
             sys.argv[1], sys.argv[2], sys.argv[3]
             ),
         pool_pre_ping=True,
-        echo=True
+        # echo=True
         )
     Base.metadata.create_all(engine)
-
-    # engine.connect()
 
 
 # session = Session(engine)
