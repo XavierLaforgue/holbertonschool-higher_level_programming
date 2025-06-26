@@ -5,11 +5,12 @@ Module name: 1-filter_states.
 Contains something a script that lists the states whose names start
 with the capital letter 'N'.
 """
-if __name__ == "__main__":
-    from sys import argv
-    import MySQLdb
+from sys import argv
+import MySQLdb
 
-    # def filter_states():
+
+def filter_states():
+    """List states whose name start with capital N."""
     mysql_username = argv[1]
     mysql_password = argv[2]
     db_name = argv[3]
@@ -22,7 +23,7 @@ if __name__ == "__main__":
         port=3306)
     c = db.cursor()
     c.execute("""SELECT * FROM states
-            WHERE states.name LIKE %s
+            WHERE states.name LIKE BINARY %s
             ORDER BY states.id ASC""", ("N%",))
     for row in c.fetchall():
         print(row)
@@ -30,4 +31,6 @@ if __name__ == "__main__":
     c.close()
     db.close()
 
-    # filter_states()
+
+if __name__ == "__main__":
+    filter_states()
