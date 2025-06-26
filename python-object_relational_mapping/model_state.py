@@ -14,7 +14,6 @@ class State(Base):
 
     __tablename__ = 'states'
     id = Column(
-        "id",
         Integer,
         autoincrement="auto",
         nullable=False,
@@ -22,7 +21,6 @@ class State(Base):
         primary_key=True
         )
     name = Column(
-        "name",
         String(128),
         nullable=False
         )
