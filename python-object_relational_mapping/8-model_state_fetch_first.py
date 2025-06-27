@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 
 
 def model_state_fetch_first():
+    """Display the first state in the table."""
     engine = create_engine(
         'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
             sys.argv[1], sys.argv[2], sys.argv[3]
@@ -23,6 +24,7 @@ def model_state_fetch_first():
         print(f"{state.id}: {state.name}")
     else:
         print("Nothing")
+
 
 if __name__ == "__main__":
     model_state_fetch_first()
