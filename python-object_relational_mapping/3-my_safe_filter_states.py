@@ -14,7 +14,9 @@ def my_filter_states():
     mysql_username = argv[1]
     mysql_password = argv[2]
     db_name = argv[3]
-    state_name = argv[4].split()[0]
+    # state_name = argv[4].split()[0] # Not actually safe againts SQL
+    # injections
+    state_name = (argv[4],)
 
     db = MySQLdb.connect(
         user=mysql_username,
@@ -24,9 +26,9 @@ def my_filter_states():
         port=3306)
     c = db.cursor()
     query = "SELECT * FROM states "\
-            "WHERE BINARY name='{}' "\
-            "ORDER BY states.id ASC".format(state_name)
-    c.execute(query)
+            "WHERE BINARY name='%s' "\
+            "ORDER BY states.id ASC"
+    c.execute(query, state_name)
     for row in c.fetchall():
         print(row)
 
