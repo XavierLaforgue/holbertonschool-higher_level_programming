@@ -4,7 +4,7 @@ Module name: model_state.
 
 Contains a class definition that inherits from Base.
 """
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 class Base(DeclarativeBase):

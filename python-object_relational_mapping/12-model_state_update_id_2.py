@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Start link class to table in database and add Louisiana to State."""
+"""Start link class to table in database and change name of a State."""
 import sys
 from model_state import Base, State
 from sqlalchemy import create_engine
@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 
 if __name__ == "__main__":
-    """Add the State object 'Louisiana' to the database
+    """Change name of a State object from the database
     hbtn_0e_6_usa."""
     engine = create_engine(
         'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
@@ -18,16 +18,8 @@ if __name__ == "__main__":
         )
     Base.metadata.create_all(engine)
 
-    # with Session(engine) as session:
-    #     stmt = insert(State).values(name='Louisiana')
-    #     inserted_id = session.execute(stmt).inserted_primary_key
-    #     session.commit()
-
-    # if inserted_id:
-    #     print(f"{inserted_id[0]}")
-
     with Session(engine) as session:
-        new_state = State(name='Louisiana')
-        session.add(new_state)
+        state_to_change = session.get(State, 2)
+        if state_to_change:
+            state_to_change.name = 'New Mexico'
         session.commit()
-        print(new_state.id)
