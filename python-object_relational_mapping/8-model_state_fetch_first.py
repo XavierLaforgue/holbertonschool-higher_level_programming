@@ -21,7 +21,8 @@ def model_state_fetch_first():
     state = session.scalars(stmt).first()
     if state:
         print(f"{state.id}: {state.name}")
-
+    else:
+        print("Nothing")
 
 if __name__ == "__main__":
     model_state_fetch_first()
