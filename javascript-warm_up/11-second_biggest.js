@@ -12,7 +12,7 @@ function SecondBiggest (SomeArray) {
     almostbiggest = SomeArray[1];
   } else {
     biggest = SomeArray[1];
-    almostbiggest = SomeArray[1];
+    almostbiggest = SomeArray[0];
   }
   let i = 2;
   while (i < SomeArray.length) {
