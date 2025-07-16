@@ -30,16 +30,16 @@ def generate_invitations(template: str, attendees: list[dict]):
     for attendee, filename in zip(attendees, filenames):
         name = attendee.get('name')
         if name is None:
-            name = 'name: N/A'
+            name = 'N/A'#'name: N/A'
         title = attendee.get('event_title')
         if title is None:
-            title = 'event_title: N/A'
+            title = 'N/A'#'event_title: N/A'
         date = attendee.get('event_date')
         if date is None:
-            date = 'event_date: N/A'
+            date = 'N/A'#'event_date: N/A'
         location = attendee.get('event_location')
         if location is None:
-            location = 'event_location: N/A'
+            location = 'N/A'#'event_location: N/A'
         invitation = template.replace('{name}', name)\
             .replace('{event_title}', title)\
             .replace('{event_date}', date)\
