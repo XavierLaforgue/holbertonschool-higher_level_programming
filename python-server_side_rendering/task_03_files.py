@@ -30,6 +30,10 @@ def products():
     if source == 'json':
         with open('products.json', 'r', encoding='utf-8') as f:
             products = json.load(f).get('products')
+            for product in products:
+                for k, v in product.items():
+                    if not isinstance(v, str):
+                        product[k] = str(v)
     elif source == 'csv':
         with open('products.csv', 'r', encoding='utf-8') as f:
             products = list(csv.DictReader(f))
@@ -37,11 +41,13 @@ def products():
         return render_template('product_display.html',
                                error_source='Wrong source'), 400
     if product_id is not None:
+        chosen_product = []
         for product in products:
+            print(product)
             if product_id == product.get('id'):
-                products = [product]
+                chosen_product = [product]
                 break
-        if products[0].get('id') != product_id:
+        if chosen_product == [] or chosen_product[0].get('id') != product_id:
             return render_template('product_display.html',
                                error_id='Product not found'), 400
     return render_template('product_display.html', products=products), 200
