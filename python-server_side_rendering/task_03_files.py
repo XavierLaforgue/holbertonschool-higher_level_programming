@@ -29,26 +29,41 @@ def products():
     product_id = request.args.get('id', None)
     if source == 'json':
         with open('products.json', 'r', encoding='utf-8') as f:
-            products = json.load(f).get('products')
+            products = json.load(f)
             for product in products:
                 for k, v in product.items():
                     if not isinstance(v, str):
                         product[k] = str(v)
+        print(f'entered source=json product={products}')
     elif source == 'csv':
         with open('products.csv', 'r', encoding='utf-8') as f:
             products = list(csv.DictReader(f))
+        print(f'entered source=csv product={products}')
     else:
+        print('entered source=bad source')
         return render_template('product_display.html',
                                error_source='Wrong source'), 400
     if product_id is not None:
-        chosen_product = []
+        print('entered product_id not none')
+        # chosen_product = []
         for product in products:
+            print('entered product loop')
             if product_id == product.get('id'):
-                chosen_product = [product]
+                # chosen_product = [product]
+                products = [product]
+                # print(f'entered product_id=product.get(id) condition and
+                # chosen_product={chosen_product}')
+                print(f'entered product_id=product.get(id) condition and products={products}')
                 break
-        if chosen_product == [] or chosen_product[0].get('id') != product_id:
+        # if chosen_product == [] or chosen_product[0].get('id') != product_id:
+            # print('entered empty chosen_product or product_id different from chosen_product.get(id)')
+            # return render_template('product_display.html',
+            #                    error_id='Product not found'), 400
+        if len(products) != 1 or products[0].get('id') != product_id:
+            print('entered number of products different than 1 or product_id different from product.get(id)')
             return render_template('product_display.html',
-                               error_id='Product not found'), 400
+                                   error_id='Product not found'), 400
+    print(f'not entered product_id not none products={products}')
     return render_template('product_display.html', products=products), 200
 
 if __name__ == '__main__':
