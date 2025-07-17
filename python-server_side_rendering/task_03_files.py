@@ -43,7 +43,6 @@ def products():
     if product_id is not None:
         chosen_product = []
         for product in products:
-            print(product)
             if product_id == product.get('id'):
                 chosen_product = [product]
                 break
