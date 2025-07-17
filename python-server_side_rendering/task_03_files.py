@@ -42,7 +42,7 @@ def products():
     else:
         print('entered source=bad source')
         return render_template('product_display.html',
-                               error_source='Wrong source'), 400
+                               error_source='Wrong source'), 200
     if product_id is not None:
         print('entered product_id not none')
         # chosen_product = []
@@ -62,7 +62,7 @@ def products():
         if len(products) != 1 or products[0].get('id') != product_id:
             print('entered number of products different than 1 or product_id different from product.get(id)')
             return render_template('product_display.html',
-                                   error_id='Product not found'), 400
+                                   error_id='Product not found'), 200
     print(f'not entered product_id not none products={products}')
     return render_template('product_display.html', products=products), 200
 
