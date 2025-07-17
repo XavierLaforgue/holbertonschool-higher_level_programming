@@ -35,7 +35,7 @@ def products():
             products = list(csv.DictReader(f))
     else:
         return render_template('product_display.html',
-                               error_source='Wrong source')
+                               error_source='Wrong source'), 400
     if product_id is not None:
         for product in products:
             if product_id == product.get('id'):
@@ -43,8 +43,8 @@ def products():
                 break
         if products[0].get('id') != product_id:
             return render_template('product_display.html',
-                               error_id='Product not found')
-    return render_template('product_display.html', products=products)
+                               error_id='Product not found'), 400
+    return render_template('product_display.html', products=products), 200
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
