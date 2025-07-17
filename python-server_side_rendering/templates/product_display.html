@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+{% if error_source is defined and error_source is not none %}
+	<div style="color:red; background-color: blueviolet; margin-top: 1rem; width: 50%;">
+		{{ error_source }}
+	</div>
+{% else %}
+<table>
+	<caption>
+		Products
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Category</th>
+			<th scope="col">Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if error_id is defined and error_id is not none %}
+			<tr>
+				<td colspan="3" style="color: crimson; background-color: darkviolet;">{{ error_id }}</td>
+			</tr>
+		{% else %}
+			{% for product in products %}
+			<tr>
+				<td>{{ product.name }}</td>
+				<td>{{ product.category }}</td>
+				<td>{{ product.price }}</td>
+			</tr>
+			{% endfor %}
+		{% endif %}
+	</tbody>
+</table>
+{% endif %}
+{% include 'footer.html' %}
