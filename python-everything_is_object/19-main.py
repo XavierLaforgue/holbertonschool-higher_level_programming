@@ -11,3 +11,10 @@ print(new_list)
 
 print(new_list == my_list)
 print(new_list is my_list)
+
+new_list += [4, 5]
+print(my_list)
+print(new_list)
+
+print(new_list == my_list)
+print(new_list is my_list)
